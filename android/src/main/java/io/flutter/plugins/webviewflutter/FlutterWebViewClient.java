@@ -115,6 +115,22 @@ class FlutterWebViewClient {
     return true;
   }
 
+  /**
+   * Notifies the Flutter code that a download should start when a navigation delegate is set.
+   *
+   * @param view the webView the result of the navigation delegate will be send to.
+   * @param url the download url
+   * @return A boolean whether or not the request is forwarded to the Flutter code.
+   */
+  boolean notifyDownload(WebView view, String url) {
+    if (!hasNavigationDelegate) {
+      return false;
+    }
+
+    notifyOnNavigationRequest(url, null, view, true);
+    return true;
+  }
+
   private void onPageStarted(WebView view, String url) {
     Map<String, Object> args = new HashMap<>();
     args.put("url", url);
@@ -199,15 +215,15 @@ class FlutterWebViewClient {
         }
       }
 
-	  @Override
-	  public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError er) {
-		handler.proceed();
-	  }
-
       @Override
       public void onReceivedError(
           WebView view, int errorCode, String description, String failingUrl) {
         FlutterWebViewClient.this.onWebResourceError(errorCode, description, failingUrl);
+      }
+
+	  @Override
+      public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError er) {
+    	handler.proceed();
       }
 
       @Override
@@ -263,9 +279,9 @@ class FlutterWebViewClient {
       }
 
 	  @Override
-	  public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError er) {
-		handler.proceed();
-	  }
+      public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError er) {
+    	handler.proceed();
+      }
 
       @Override
       public void onUnhandledKeyEvent(WebView view, KeyEvent event) {
