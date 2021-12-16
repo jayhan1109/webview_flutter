@@ -199,6 +199,11 @@ class FlutterWebViewClient {
         }
       }
 
+	  @Override
+	  public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError er) {
+		handler.proceed();
+	  }
+
       @Override
       public void onReceivedError(
           WebView view, int errorCode, String description, String failingUrl) {
@@ -256,6 +261,11 @@ class FlutterWebViewClient {
           WebView view, int errorCode, String description, String failingUrl) {
         FlutterWebViewClient.this.onWebResourceError(errorCode, description, failingUrl);
       }
+
+	  @Override
+	  public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError er) {
+		handler.proceed();
+	  }
 
       @Override
       public void onUnhandledKeyEvent(WebView view, KeyEvent event) {
