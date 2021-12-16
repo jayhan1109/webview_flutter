@@ -1,3 +1,43 @@
+## 2.5.0
+
+* Adds an option to set the background color of the webview.
+
+## 2.4.0
+
+* Adds support for the `loadFile` and `loadHtmlString` methods.
+* Updates example app Android compileSdkVersion to 31.
+* Integration test fixes.
+* Updates code for new analysis options.
+
+## 2.3.1
+
+* Add iOS-specific note to set `JavascriptMode.unrestricted` in order to set `zoomEnabled: false`.
+
+## 2.3.0
+
+* Add ability to enable/disable zoom functionality.
+
+## 2.2.0
+
+* Added `runJavascript` and `runJavascriptForResult` to supersede `evaluateJavascript`.
+* Deprecated `evaluateJavascript`.
+
+## 2.1.2
+
+* Fix typos in the README.
+
+## 2.1.1
+
+* Fixed `_CastError` that was thrown when running the example App.
+
+## 2.1.0
+
+* Migrated to fully federated architecture.
+
+## 2.0.14
+
+* Update minimum Flutter SDK to 2.5 and iOS deployment target to 9.0.
+
 ## 2.0.13
 
 * Send URL of File to download to the NavigationDelegate on Android just like it is already done on iOS.
